@@ -20,7 +20,7 @@ export default function Index({ allPosts }: Props) {
     <>
       <ul>
         {allPosts.map(p => (
-          <li>
+          <li key={p.slug}>
           <Link
           as={`/posts/${p.slug}`}
           href="/posts/[slug]"
