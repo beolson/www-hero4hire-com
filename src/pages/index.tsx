@@ -1,7 +1,8 @@
+import { Header } from "@/components/Header";
 import Post from "../interfaces/post";
 import { getAllPosts } from "@/lib/postAccessor";
-import { Header } from "@/components/Header";
 import { ArticleCard } from "@/components/ArticleCard";
+import { Footer } from "@/components/Footer";
 
 type Props = {
   allPosts: Post[];
@@ -11,7 +12,7 @@ export default function Index({ allPosts }: Props) {
   return (
     <>
       <Header />
-      <div className="bg-white sm:py-8">
+      <div className="sm:py-8">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:max-w-4xl">
             {allPosts.map((post) => (
@@ -20,6 +21,7 @@ export default function Index({ allPosts }: Props) {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

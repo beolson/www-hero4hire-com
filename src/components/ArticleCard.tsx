@@ -1,57 +1,34 @@
-import Post from "../interfaces/post";
 import Link from "next/link";
+import Post from "../interfaces/post";
 
 const ArticleCard = ({ post }: { post: Post }) => {
   return (
-    <article key={post.slug} className="relative isolate flex flex-col gap-8 lg:flex-row">
-      {/* <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
-                   <img
-                      src={post.imageUrl}
-                      alt=""
-                      className="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover"
-                    /> 
-                    <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
-                  </div> */}
-      <div>
-        <div className="flex items-center gap-x-4 text-xs">
-          <time dateTime={post.date} className="text-gray-500">
-            {post.date}
-          </time>
-          {/* <a
-                        href={post.category.href}
-                        className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
-                      >
-                        {post.category.title}
-                      </a> */}
-        </div>
-        <div className="group relative max-w-xl">
-          <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-            {/* <a href={post.slug}>
-              <span className="absolute inset-0" />
-              {post.title}
-            </a> */}
-            <Link as={`/posts/${post.slug}`} href="/posts/[slug]" className="hover:underline">
-              {post.title}
-            </Link>
-          </h3>
-          <p className="mt-5 text-sm leading-6 text-gray-600">{post.excerpt}</p>
-        </div>
-        <div className="mt-6 flex border-t border-gray-900/5 pt-6">
-          <div className="relative flex items-center gap-x-4">
-            {/* <img src={post.author.imageUrl} alt="" className="h-10 w-10 rounded-full bg-gray-50" /> */}
-            {/* <div className="text-sm leading-6">
-                          <p className="font-semibold text-gray-900">
-                            <a href={post.author.href}>
-                              <span className="absolute inset-0" />
-                              {post.author.name}
-                            </a>
-                          </p>
-                          <p className="text-gray-600">{post.author.role}</p>
-                        </div> */}
+    <div className="container w-full md:max-w-5xl mx-auto pt-5">
+      <div className="w-full px-4 md:px-6 text-xl text-gray-800 leading-normal">
+        <div className="font-sans">
+          <h1 className="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">
+            Welcome to Minimal Blog
+          </h1>
+          <p className="text-sm md:text-base font-normal text-gray-600">Published 19 February 2019</p>
+
+          <div className="text-base md:text-sm text-gray-500 py-2">
+            Tags:{" "}
+            <a href="#" className="text-base md:text-sm text-green-500 no-underline hover:underline">
+              Link
+            </a>{" "}
+            .{" "}
+            <a href="#" className="text-base md:text-sm text-green-500 no-underline hover:underline">
+              Link
+            </a>
           </div>
+          <p>
+            The basic blog page layout is available and all using the default Tailwind CSS classes (although there are a
+            few hardcoded style tags). If you are going to use this in your project, you will want to convert the
+            classes into components.
+          </p>
         </div>
       </div>
-    </article>
+    </div>
   );
 };
 
