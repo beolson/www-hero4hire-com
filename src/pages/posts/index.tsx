@@ -6,7 +6,7 @@ const Zoom = () => {
   return (
     <>
       <Header />
-      <Article />
+      {/* <Article /> */}
       <Footer />
     </>
   );

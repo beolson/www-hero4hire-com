@@ -7,7 +7,9 @@ import markdownToHtml from "../../lib/markdownToHtml";
 import type PostType from "../../interfaces/post";
 import { getAllPosts, getPostBySlug } from "@/lib/postAccessor";
 import markdownStyles from "../../styles/markdown-styles.module.css";
-
+import { Article } from "@/components/Article";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
 type Props = {
   post: PostType;
   morePosts: PostType[];
@@ -22,16 +24,9 @@ export default function Post({ post, morePosts, preview }: Props) {
   }
   return (
     <>
-      <div className="bg-white px-6 py-32 lg:px-8">
-        <div className="mx-auto max-w-3xl text-base leading-7 text-gray-700">
-          <Head>
-            <title>{title}</title>
-            <meta property="og:image" content={post.ogImage.url} />
-          </Head>
-          <p className="text-base font-semibold leading-7 text-indigo-600">{post.title}</p>
-          <div className={markdownStyles["markdown"]} dangerouslySetInnerHTML={{ __html: post.content }} />
-        </div>
-      </div>
+      <Header />
+      <Article post={post} />
+      <Footer />
     </>
   );
 }

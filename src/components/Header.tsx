@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Header = () => {
   return (
     <nav id="header" className="fixed w-full z-10 top-0 bg-white">
@@ -5,9 +7,9 @@ const Header = () => {
 
       <div className="w-full md:max-w-6xl mx-auto flex flex-wrap items-center justify-between mt-0 py-1">
         <div className="pl-4">
-          <a className="text-gray-900 text-base no-underline hover:no-underline font-extrabold text-xl" href="#">
+          <Link href="/" className="text-gray-900 text-base no-underline hover:no-underline font-extrabold text-xl">
             Hero4Hire
-          </a>
+          </Link>
         </div>
 
         <div className="block lg:hidden pr-4">
@@ -28,17 +30,17 @@ const Header = () => {
         >
           <ul className="list-reset lg:flex justify-end flex-1 items-center">
             <li className="mr-3">
-              <a className="inline-block py-2 px-4 text-gray-900 font-bold no-underline" href="#">
+              <Link href="/posts/" className="inline-block py-2 px-4 text-gray-900 font-bold no-underline">
                 Blog
-              </a>
+              </Link>
             </li>
             <li className="mr-3">
-              <a
+              <Link
+                href="/notes/"
                 className="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
-                href="#"
               >
                 Notes
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

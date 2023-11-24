@@ -16,7 +16,7 @@ export default function Index({ allPosts }: Props) {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:max-w-4xl">
             {allPosts.map((post) => (
-              <ArticleCard post={post} />
+              <ArticleCard key={post.slug} post={post} />
             ))}
           </div>
         </div>
