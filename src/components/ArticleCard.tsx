@@ -10,7 +10,13 @@ const ArticleCard = ({ post }: { post: Post }) => {
             <Link href={`posts/${post.slug}`}>{post.title}</Link>
           </h1>
           <p className="text-sm md:text-base font-normal text-gray-600">
-            Published {new Date(post.date).toLocaleDateString()}
+            Published{" "}
+            {new Date(post.date).toLocaleDateString("en-us", {
+              // weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
           </p>
 
           <div className="text-base md:text-sm text-gray-500 py-2">

@@ -1,15 +1,34 @@
-import { Article } from "@/components/Article";
-import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import Post from "@/interfaces/post";
+import { getAllPosts } from "@/lib/postAccessor";
+import { ArticleCard } from "@/components/ArticleCard";
+import { Footer } from "@/components/Footer";
 
-const Zoom = () => {
+type Props = {
+  allPosts: Post[];
+};
+
+export default function PostIndex({ allPosts }: Props) {
   return (
     <>
       <Header />
-      {/* <Article /> */}
+      <div className="sm:py-8">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:max-w-4xl">
+            {allPosts.map((post) => (
+              <ArticleCard key={post.slug} post={post} />
+            ))}
+          </div>
+        </div>
+      </div>
       <Footer />
     </>
   );
-};
+}
 
-export default Zoom;
+export const getStaticProps = async () => {
+  const allPosts = getAllPosts(["title", "date", "slug", "author", "coverImage", "excerpt"]);
+  return {
+    props: { allPosts },
+  };
+};

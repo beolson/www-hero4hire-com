@@ -34,14 +34,14 @@ const Header = () => {
                 Blog
               </Link>
             </li>
-            <li className="mr-3">
+            {/* <li className="mr-3">
               <Link
                 href="/notes/"
                 className="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
               >
                 Notes
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
