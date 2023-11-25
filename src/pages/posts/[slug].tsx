@@ -2,19 +2,17 @@ import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 
 import markdownToHtml from "../../lib/markdownToHtml";
-import type PostType from "../../interfaces/post";
+import { Post } from "@/interfaces/post";
 import { getAllPosts, getPostBySlug } from "@/lib/postAccessor";
 import markdownStyles from "../../styles/markdown-styles.module.css";
 import { Article } from "@/components/Article";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 type Props = {
-  post: PostType;
-  morePosts: PostType[];
-  preview?: boolean;
+  post: Post;
 };
 
-export default function Post({ post, morePosts, preview }: Props) {
+export default function Post({ post }: Props) {
   const router = useRouter();
 
   if (!router.isFallback && !post?.slug) {
@@ -36,7 +34,7 @@ type Params = {
 };
 
 export async function getStaticProps({ params }: Params) {
-  const post = getPostBySlug(params.slug, ["title", "date", "slug", "author", "content", "ogImage", "coverImage"]);
+  const post = await getPostBySlug(params.slug);
   const content = await markdownToHtml(post.content || "");
 
   return {
@@ -50,7 +48,7 @@ export async function getStaticProps({ params }: Params) {
 }
 
 export async function getStaticPaths() {
-  const posts = getAllPosts(["slug"]);
+  const posts = await getAllPosts();
 
   return {
     paths: posts.map((post) => {

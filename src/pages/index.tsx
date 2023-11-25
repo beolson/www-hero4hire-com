@@ -1,5 +1,5 @@
 import { Header } from "@/components/Header";
-import Post from "../interfaces/post";
+import { Post } from "../interfaces/post";
 import { getAllPosts } from "@/lib/postAccessor";
 import { ArticleCard } from "@/components/ArticleCard";
 import { Footer } from "@/components/Footer";
@@ -27,7 +27,7 @@ export default function Index({ allPosts }: Props) {
 }
 
 export const getStaticProps = async () => {
-  const allPosts = getAllPosts(["title", "date", "slug", "author", "coverImage", "excerpt"]);
+  const allPosts = await getAllPosts();
 
   return {
     props: { allPosts },
