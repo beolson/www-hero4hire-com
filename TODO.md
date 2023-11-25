@@ -2,23 +2,18 @@
 
 ### Todo
 
-- [] Home page
-  - [] Fix slug links
+- Home page
+  - [x] Fix slug links
   - [] paging on blogs goes to blog list page
-  - [] header links to correct places
+  - [x] header links to correct places
   - [] footer links
   - [] footer about
-- [] blog list page
-  - [] create it
+- blog list page
+  - [x] create it
+  - [] tag list
   - [] paging
-- [] blog page
-  - [] links working
-  - [] blog content rendering
+- blog page
+  - [x] links working
+  - [x] blog content rendering
 - [] notes section
-  - [] do it
-
-### In Progress
-
-### Done ✓
-
 - [x] Make footer stick to bottom
