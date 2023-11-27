@@ -3,7 +3,7 @@ import ErrorPage from "next/error";
 
 import markdownToHtml from "../../lib/markdownToHtml";
 import { Post } from "@/interfaces/post";
-import { getAllPosts, getPostBySlug } from "@/lib/postAccessor";
+import { getPost, getPosts } from "@/lib/postAccessor";
 import markdownStyles from "../../styles/markdown-styles.module.css";
 import { Article } from "@/components/Article";
 import { Footer } from "@/components/Footer";
@@ -34,7 +34,7 @@ type Params = {
 };
 
 export async function getStaticProps({ params }: Params) {
-  const post = await getPostBySlug(params.slug);
+  const post = await getPost(params.slug);
   const content = await markdownToHtml(post.content || "");
 
   return {
@@ -48,7 +48,7 @@ export async function getStaticProps({ params }: Params) {
 }
 
 export async function getStaticPaths() {
-  const posts = await getAllPosts();
+  const { posts } = await getPosts({});
 
   return {
     paths: posts.map((post) => {

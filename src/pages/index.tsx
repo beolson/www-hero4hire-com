@@ -1,25 +1,23 @@
 import { Header } from "@/components/Header";
-import { Post } from "../interfaces/post";
-import { getAllPosts } from "@/lib/postAccessor";
+import { GetPostsResponse, Post } from "../interfaces/post";
+import { getPosts } from "@/lib/postAccessor";
 import { ArticleCard } from "@/components/ArticleCard";
 import { Footer } from "@/components/Footer";
 
 type Props = {
-  allPosts: Post[];
+  allPosts: GetPostsResponse;
 };
 
 export default function Index({ allPosts }: Props) {
   return (
     <>
       <Header />
-      <div className="sm:py-8">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:max-w-4xl">
-            {allPosts.map((post) => (
-              <ArticleCard key={post.slug} post={post} />
-            ))}
-          </div>
-        </div>
+      <div className="py-8">
+
+        {allPosts.posts.map((post) => (
+          <ArticleCard key={post.slug} post={post} />
+        ))}
+
       </div>
       <Footer />
     </>
@@ -27,7 +25,7 @@ export default function Index({ allPosts }: Props) {
 }
 
 export const getStaticProps = async () => {
-  const allPosts = await getAllPosts();
+  const allPosts = await getPosts({ page: 1 });
 
   return {
     props: { allPosts },

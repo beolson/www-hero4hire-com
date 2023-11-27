@@ -1,5 +1,6 @@
+import { Post } from "@/interfaces/post";
 import Link from "next/link";
-import Post from "../interfaces/post";
+// import Post from "../interfaces/post";
 // import markdownStyles from "../../styles/markdown-styles.module.css";
 
 const Article = ({ post }: { post: Post }) => {
@@ -20,13 +21,15 @@ const Article = ({ post }: { post: Post }) => {
 
           <div className="text-base md:text-sm text-gray-500 py-2">
             Tags:{" "}
-            <a href="#" className="text-base md:text-sm text-green-500 no-underline hover:underline">
-              Link
-            </a>{" "}
-            .{" "}
-            <a href="#" className="text-base md:text-sm text-green-500 no-underline hover:underline">
-              Link
-            </a>
+            {post.tags.map((tag, index) =>
+              <>
+                {!!index && <span className="px-1">/</span>}
+                <a href="#" className="text-base md:text-sm text-green-500 no-underline hover:underline">
+                  {tag}
+                </a>
+              </>
+            )}
+
           </div>
         </div>
       </div>

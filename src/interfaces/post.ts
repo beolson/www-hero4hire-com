@@ -1,5 +1,3 @@
-import type Author from "./author";
-
 type Post = {
   slug: string;
   title: string;
@@ -9,4 +7,15 @@ type Post = {
   tags: Array<string>;
 };
 
-export type { Post };
+interface GetPostsArgs {
+  tag?: string;
+  page?: number;
+}
+
+interface GetPostsResponse {
+  pages: number;
+  currentPage: number;
+  posts: Array<Post>;
+}
+
+export type { Post, GetPostsArgs, GetPostsResponse };
