@@ -1,0 +1,26 @@
+---
+
+pagination:
+  data: collections.articles
+  size: 6
+  alias: articles
+layout: layout.html
+title: Hero4Hire
+---
+<div class="py-8">
+
+<ul>
+	{%- for entry in collections.notes %}
+	<li><a href="{{ entry.url }}"><code>{{ entry.url }}</code></a></li>
+	{%- endfor %}
+</ul>
+<hr />
+
+<ul>
+	{%- for entry in articles %}
+	<li><a href="{{ entry.url }}"><code>{{ entry.url }}</code></a></li>
+	{%- endfor %}
+</ul>
+
+</div>
+
