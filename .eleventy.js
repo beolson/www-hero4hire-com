@@ -22,6 +22,16 @@ module.exports = function (eleventyConfig) {
     );
   });
 
+  eleventyConfig.addFilter("getAllTags", (collection) => {
+    let tagSet = new Set();
+    for (let item of collection) {
+      (item.data.tags || []).forEach((tag) => tagSet.add(tag));
+    }
+
+    console.log(tagSet);
+    return Array.from(tagSet);
+  });
+
   return {
     // Control which files Eleventy will process
     // e.g.: *.md, *.njk, *.html, *.liquid

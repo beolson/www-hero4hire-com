@@ -1,0 +1,27 @@
+---
+
+
+layout: layout.html
+title: Hero4Hire
+permalink: /tags/
+---
+<br>
+<br>
+<br>
+<br>
+<br>
+<ul>
+  {% assign allTags = collections.all | getAllTags %}
+  {% for tag in allTags %}
+    {{ tag }}
+    {% comment %} {{ tag | log }} {% endcomment %}
+    {% comment %}
+      {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+      <li>
+        <a href="{{ tagUrl }}" class="post-tag">{{ tag }}</a>
+      </li>
+    {% endcomment %}
+  {% endfor %}
+</ul>
+
+test
