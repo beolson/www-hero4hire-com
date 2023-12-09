@@ -4,7 +4,7 @@ pagination:
   data: collections.articles
   size: 6
   alias: articles
-layout: layout.html
+layout: layout.liquid
 title: Hero4Hire
 ---
 <div class="py-8">
@@ -26,9 +26,11 @@ title: Hero4Hire
               {%- if forloop.last != true -%}&nbsp/{%- endif %}
             {%- endfor %}
           </div>
-          <p>
-            {{ entry.data.excerpt }}
-          </p>
+          <div class="prose lg:prose-xl max-w-none ">
+            <p>
+              {{ entry.data.excerpt }}
+            </p>
+          </div>
         </div>
       </div>
     </div>

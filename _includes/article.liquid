@@ -1,0 +1,36 @@
+---
+
+
+layout: layout.liquid
+title: Hero4Hire
+---
+<div class="container w-full md:max-w-5xl mx-auto py-8">
+  <div class="w-full px-4 md:px-6 text-xl text-gray-800 leading-normal">
+    <div class="font-sans">
+      <p class="text-base md:text-sm text-green-500 font-bold">
+        &lt;
+        <a class="text-base md:text-sm text-green-500 font-bold no-underline hover:underline" href="/posts"
+          >BACK TO BLOG</a
+        >
+      </p>
+      <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">
+        <a href="{{ url }}">{{ title }}</a>
+      </h1>
+      <p class="text-sm md:text-base font-normal text-gray-600">Published {{ date | htmlDateString }}</p>
+      <div class="text-base md:text-sm text-gray-500 py-2">
+        Tags:
+
+        {%- for tag in tags %}
+          <a href="/tags/{{- tag -}}" class="text-base md:text-sm text-green-500 no-underline hover:underline">
+            {{- tag -}}
+          </a>
+          {%- if forloop.last != true -%}&nbsp/{%- endif %}
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="prose px-4 md:px-6 lg:prose-xl max-w-none ">
+    {{ content }}
+  </div>
+</div>

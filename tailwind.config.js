@@ -1,7 +1,7 @@
 module.exports = {
-    content: ["./content/**/*liquid", "./_includes/**/*html"],
-    theme: {
-      extend: {},
-    },
-    plugins: [],
-  }
+  content: ["./content/**/*liquid", "./_includes/**/*liquid"],
+  theme: {
+    extend: {},
+  },
+  plugins: [require("@tailwindcss/typography")],
+};
