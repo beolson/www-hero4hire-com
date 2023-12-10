@@ -3,12 +3,6 @@ pagination:
   data: collections
   size: 1
   alias: tag
-  filter:
-    - all
-    - post
-    - posts
-    - tagList
-  addAllPagesToCollections: true
 layout: layout.liquid
 
 permalink: /tags/{{ tag  }}/ 
@@ -20,14 +14,20 @@ permalink: /tags/{{ tag  }}/
 
   <p>See <a href="/tags/">all tags</a>.</p>
 {% endcomment %}
+<div class="py-8">
+  <div class="container w-full md:max-w-5xl mx-auto pt-5">
+    <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">Tagged "{{ tag }}"</h1>
 
-<br>
-<br>
-<br>
-<br>
-<h1>Tagged “{{ tag }}”</h1>
+    {% assign postslist = collections[tag] %}
+    <ul>
+    {% for post in postslist %}
+      <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-xl md:text-xl">
+        <a href="{{ post.url }}">{{post.data.title }}</a>
+      </h1>
+      <p class="text-sm md:text-base font-normal text-gray-600">Published {{ post.data.date | htmlDateString }}</p>
 
-{% assign postslist = collections[tag] %}
-{% for post in postslist %}
-  {{ post.data.title }}
-{% endfor %}
+   
+    {% endfor %}
+    <ul>
+  </div>
+</div>

@@ -13,6 +13,7 @@ permalink: /tags/
 <ul>
   {% assign allTags = collections.all | getAllTags %}
   {% for tag in allTags %}
+    <br>
     {{ tag }}
     {% comment %} {{ tag | log }} {% endcomment %}
     {% comment %}
