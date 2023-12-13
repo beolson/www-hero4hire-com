@@ -10,5 +10,8 @@
   "prettier.configPath": "./.prettierrc",
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[liquid]": {
+    "editor.defaultFormatter": "Shopify.theme-check-vscode"
   }
 }

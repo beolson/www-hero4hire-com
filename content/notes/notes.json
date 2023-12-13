@@ -1,1 +1,6 @@
-{ "tags": "notes" }
+{
+    "tags": [
+        "notes"
+    ],
+    "layout": "notes/base.liquid"
+}
