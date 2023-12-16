@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "eleventy --serve & postcss public/tailwind.css -o public/style.css -w"
+    "dev": "eleventy --serve & postcss public/tailwind.css -o public/style.css -w",
+    "build": "eleventy & postcss public/tailwind.css -o public/style.css "
   },
   "keywords": [],
   "author": "",
