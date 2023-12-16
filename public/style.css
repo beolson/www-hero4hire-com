@@ -1441,9 +1441,6 @@ video {
 .fill-current {
   fill: currentColor;
 }
-.p-16 {
-  padding: 4rem;
-}
 .p-2 {
   padding: 0.5rem;
 }
