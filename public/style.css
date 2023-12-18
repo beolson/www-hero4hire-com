@@ -1189,9 +1189,6 @@ video {
 .-m-2\.5 {
   margin: -0.625rem;
 }
-.m-2 {
-  margin: 0.5rem;
-}
 .m-6 {
   margin: 1.5rem;
 }
@@ -1526,6 +1523,9 @@ video {
 }
 .pt-6 {
   padding-top: 1.5rem;
+}
+.text-center {
+  text-align: center;
 }
 .font-sans {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -1998,10 +1998,6 @@ video {
 
   .lg\:items-center {
     align-items: center;
-  }
-
-  .lg\:pl-72 {
-    padding-left: 18rem;
   }
 
   .lg\:pl-80 {
