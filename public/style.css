@@ -1189,6 +1189,12 @@ video {
 .-m-2\.5 {
   margin: -0.625rem;
 }
+.m-2 {
+  margin: 0.5rem;
+}
+.m-6 {
+  margin: 1.5rem;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -1996,5 +2002,9 @@ video {
 
   .lg\:pl-72 {
     padding-left: 18rem;
+  }
+
+  .lg\:pl-80 {
+    padding-left: 20rem;
   }
 }
