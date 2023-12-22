@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ '/style.css' | url }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script></script>
+  </head>
+  <body class="font-sans leading-normal tracking-normal">
+    <div class="min-h-screen bg-red-100 flex flex-col lg:flex-row">
+      <div class="lg:hidden">mobile Title</div>
+      <div class="bg-green-100 flex flex-col hidden lg:flex lg:flex-col">
+        <div>title</div>
+        <div class="flex flex-1">
+          <div class="w-16 bg-green-200">dots</div>
+          <div class="w-64 bg-green-300">Folders</div>
+        </div>
+      </div>
+      <div class="bg-blue-100 flex-1">Content</div>
+    </div>
+  </body>
+</html>
