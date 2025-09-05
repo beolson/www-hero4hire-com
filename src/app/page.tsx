@@ -1,103 +1,296 @@
 import Image from "next/image";
+import { posts, Post } from '../../.velite'
 
-export default function Home() {
+
+export default async function Home() {
+  // console.log('here')
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+    <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
+   <section className="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+      <header className="flex items-center w-full bg-white dark:bg-gray-950 justify-between py-10">
+         <a className="break-words" aria-label="TailwindBlog" href="/">
+            <div className="flex items-center justify-between">
+               <div className="mr-3">
+               </div>
+               <div className="hidden h-6 text-2xl font-semibold sm:block">TailwindBlog</div>
+            </div>
+         </a>
+         <div className="flex items-center space-x-4 leading-5 sm:-mr-6 sm:space-x-6">
+            <div className="no-scrollbar hidden max-w-40 items-center gap-x-4 overflow-x-auto sm:flex md:max-w-72 lg:max-w-96">
+               <a className="hover:text-primary-500 dark:hover:text-primary-400 m-1 font-medium text-gray-900 dark:text-gray-100" href="/blog">Blog</a><a className="hover:text-primary-500 dark:hover:text-primary-400 m-1 font-medium text-gray-900 dark:text-gray-100" href="/tags">Tags</a>
+               <a className="hover:text-primary-500 dark:hover:text-primary-400 m-1 font-medium text-gray-900 dark:text-gray-100" href="/projects">Projects</a><a className="hover:text-primary-500 dark:hover:text-primary-400 m-1 font-medium text-gray-900 dark:text-gray-100" href="/about">About</a>
+            </div>
+            <button aria-label="Search">
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="hover:text-primary-500 dark:hover:text-primary-400 h-6 w-6 text-gray-900 dark:text-gray-100">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+               </svg>
+            </button>
+            <div className="flex items-center">
+               <div className="relative inline-block text-left" data-headlessui-state="">
+                  <div className="hover:text-primary-500 dark:hover:text-primary-400 flex items-center justify-center">
+                     <button aria-label="Theme switcher"
+                        type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state="">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="group:hover:text-gray-100 h-6 w-6">
+                           <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                        </svg>
+                     </button>
+                  </div>
+               </div>
+            </div>
+            <button aria-label="Toggle Menu" className="sm:hidden">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="hover:text-primary-500 dark:hover:text-primary-400 h-8 w-8 text-gray-900 dark:text-gray-100">
+                  <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+               </svg>
+            </button>
+         </div>
+      </header>
+      <main className="mb-auto">
+         <div className="divide-y divide-gray-200 dark:divide-gray-700">
+            <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+               <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">Latest</h1>
+               <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">A blog created with Next.js and Tailwind.css</p>
+            </div>
+            <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+               <li className="py-12">
+                  <article>
+                     <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+                        <dl>
+                           <dt className="sr-only">Published on</dt>
+                           <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
+                              <time>August 5, 2023</time>
+                           </dd>
+                        </dl>
+                        <div className="space-y-5 xl:col-span-3">
+                           <div className="space-y-6">
+                              <div>
+                                 <h2 className="text-2xl leading-8 font-bold tracking-tight">
+                                    <a className="text-gray-900 dark:text-gray-100" href="/blog/release-of-tailwind-nextjs-starter-blog-v2.0">Release of Tailwind Nextjs Starter Blog v2.0</a>
+                                 </h2>
+                                 <div className="flex flex-wrap"><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase" href="/tags/next-js">next-js</a><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase" href="/tags/tailwind">tailwind</a><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase" href="/tags/guide">guide</a><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase" href="/tags/feature">feature</a></div>
+                              </div>
+                              <div className="prose max-w-none text-gray-500 dark:text-gray-400">Release of Tailwind Nextjs Starter Blog template v2.0, refactored with Nextjs App directory and React Server Components setup.Discover the new features and how to migrate from V1.</div>
+                           </div>
+                           <div className="text-base leading-6 font-medium"><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400" aria-label="Read more: &quot;Release of Tailwind Nextjs Starter Blog v2.0&quot;" href="/blog/release-of-tailwind-nextjs-starter-blog-v2.0">Read more →</a></div>
+                        </div>
+                     </div>
+                  </article>
+               </li>
+               <li className="py-12">
+                  <article>
+                     <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+                        <dl>
+                           <dt className="sr-only">Published on</dt>
+                           <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400"><time >August 7, 2021</time></dd>
+                        </dl>
+                        <div className="space-y-5 xl:col-span-3">
+                           <div className="space-y-6">
+                              <div>
+                                 <h2 className="text-2xl leading-8 font-bold tracking-tight"><a className="text-gray-900 dark:text-gray-100" href="/blog/new-features-in-v1">New features in v1</a></h2>
+                                 <div className="flex flex-wrap"><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase" href="/tags/next-js">next-js</a>
+                                    <a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase" href="/tags/tailwind">tailwind</a><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase" href="/tags/guide">guide</a>
+                                 </div>
+                              </div>
+                              <div className="prose max-w-none text-gray-500 dark:text-gray-400">An overview of the new features released in v1 - code block copy, multiple authors, frontmatter layout and more</div>
+                           </div>
+                           <div className="text-base leading-6 font-medium"><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400" aria-label="Read more: &quot;New features in v1&quot;" href="/blog/new-features-in-v1">Read more →</a></div>
+                        </div>
+                     </div>
+                  </article>
+               </li>
+               <li className="py-12">
+                  <article>
+                     <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+                        <dl>
+                           <dt className="sr-only">Published on</dt>
+                           <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400"><time >May 2, 2021</time></dd>
+                        </dl>
+                        <div className="space-y-5 xl:col-span-3">
+                           <div className="space-y-6">
+                              <div>
+                                 <h2 className="text-2xl leading-8 font-bold tracking-tight"><a className="text-gray-900 dark:text-gray-100" href="/blog/nested-route/introducing-multi-part-posts-with-nested-routing">Introducing Multi-part Posts with Nested Routing</a></h2>
+                                 <div className="flex flex-wrap"><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase" href="/tags/multi-author">multi-author</a><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase" href="/tags/next-js">next-js</a><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase" href="/tags/feature">feature</a></div>
+                              </div>
+                              <div className="prose max-w-none text-gray-500 dark:text-gray-400">The blog template supports posts in nested sub-folders. This can be used to group posts of similar content e.g. a multi-part course. This post is itself an example of a nested route!</div>
+                           </div>
+                           <div className="text-base leading-6 font-medium"><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400" aria-label="Read more: &quot;Introducing Multi-part Posts with Nested Routing&quot;" href="/blog/nested-route/introducing-multi-part-posts-with-nested-routing">Read more →</a></div>
+                        </div>
+                     </div>
+                  </article>
+               </li>
+               <li className="py-12">
+                  <article>
+                     <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+                        <dl>
+                           <dt className="sr-only">Published on</dt>
+                           <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400"><time >January 12, 2021</time></dd>
+                        </dl>
+                        <div className="space-y-5 xl:col-span-3">
+                           <div className="space-y-6">
+                              <div>
+                                 <h2 className="text-2xl leading-8 font-bold tracking-tight"><a className="text-gray-900 dark:text-gray-100" href="/blog/introducing-tailwind-nextjs-starter-blog">Introducing Tailwind Nextjs Starter Blog</a></h2>
+                                 <div className="flex flex-wrap"><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase" href="/tags/next-js">next-js</a><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase" href="/tags/tailwind">tailwind</a><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase" href="/tags/guide">guide</a></div>
+                              </div>
+                              <div className="prose max-w-none text-gray-500 dark:text-gray-400">Looking for a performant, out of the box template, with all the best in web technology to support your blogging needs? Checkout the Tailwind Nextjs Starter Blog template.</div>
+                           </div>
+                           <div className="text-base leading-6 font-medium"><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400" aria-label="Read more: &quot;Introducing Tailwind Nextjs Starter Blog&quot;" href="/blog/introducing-tailwind-nextjs-starter-blog">Read more →</a></div>
+                        </div>
+                     </div>
+                  </article>
+               </li>
+               <li className="py-12">
+                  <article>
+                     <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+                        <dl>
+                           <dt className="sr-only">Published on</dt>
+                           <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400"><time >December 21, 2020</time></dd>
+                        </dl>
+                        <div className="space-y-5 xl:col-span-3">
+                           <div className="space-y-6">
+                              <div>
+                                 <h2 className="text-2xl leading-8 font-bold tracking-tight"><a className="text-gray-900 dark:text-gray-100" href="/blog/deriving-ols-estimator">Deriving the OLS Estimator</a></h2>
+                                 <div className="flex flex-wrap"><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase" href="/tags/next-js">next-js</a><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase" href="/tags/math">math</a><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase" href="/tags/ols">ols</a></div>
+                              </div>
+                              <div className="prose max-w-none text-gray-500 dark:text-gray-400">How to derive the OLS Estimator with matrix notation and a tour of math typesetting using markdown with the help of KaTeX.</div>
+                           </div>
+                           <div className="text-base leading-6 font-medium"><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400" aria-label="Read more: &quot;Deriving the OLS Estimator&quot;" href="/blog/deriving-ols-estimator">Read more →</a></div>
+                        </div>
+                     </div>
+                  </article>
+               </li>
+            </ul>
+         </div>
+         <div className="flex justify-end text-base leading-6 font-medium"><a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400" aria-label="All posts" href="/blog">All Posts →</a>
+         </div>
+         <div className="flex items-center justify-center pt-4">
+            <div>
+               <div className="pb-1 text-lg font-semibold text-gray-800 dark:text-gray-100">Subscribe to the newsletter</div>
+               <form className="flex flex-col sm:flex-row">
+                  <div>
+                     <label >
+                        <span className="sr-only">Email address</span>
+                        <div data-lastpass-icon-root="" >
+                           <template >
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-lastpass-icon="true" >
+                                 <rect x="0.680176" y="0.763062" width="22.6392" height="22.4737" rx="4" fill="currentColor"></rect>
+                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M19.7935 7.9516C19.7935 7.64414 20.0427 7.3949 20.3502 7.3949C20.6576 7.3949 20.9069 7.64414 20.9069 7.9516V16.0487C20.9069 16.3562 20.6576 16.6054 20.3502 16.6054C20.0427 16.6054 19.7935 16.3562 19.7935 16.0487V7.9516Z" fill="white"></path>
+                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M4.76288 13.6577C5.68525 13.6577 6.43298 12.9154 6.43298 11.9998C6.43298 11.0842 5.68525 10.3419 4.76288 10.3419C3.8405 10.3419 3.09277 11.0842 3.09277 11.9998C3.09277 12.9154 3.8405 13.6577 4.76288 13.6577Z" fill="white"></path>
+                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3298 13.6577C11.2521 13.6577 11.9999 12.9154 11.9999 11.9998C11.9999 11.0842 11.2521 10.3419 10.3298 10.3419C9.4074 10.3419 8.65967 11.0842 8.65967 11.9998C8.65967 12.9154 9.4074 13.6577 10.3298 13.6577Z" fill="white"></path>
+                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M15.8964 13.6577C16.8188 13.6577 17.5665 12.9154 17.5665 11.9998C17.5665 11.0842 16.8188 10.3419 15.8964 10.3419C14.974 10.3419 14.2263 11.0842 14.2263 11.9998C14.2263 12.9154 14.974 13.6577 15.8964 13.6577Z" fill="white"></path>
+                              </svg>
+                           </template>
+                        </div>
+                     </label>
+                  </div>
+                  <div className="mt-2 flex w-full rounded-md shadow-sm sm:mt-0 sm:ml-3"><button className="bg-primary-500 w-full rounded-md py-2 px-4 font-medium text-white sm:py-0 hover:bg-primary-700 dark:hover:bg-primary-400 focus:ring-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:ring-offset-black" type="submit">Sign up</button></div>
+               </form>
+            </div>
+         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      <footer>
+         <div className="mt-16 flex flex-col items-center">
+            <div className="mb-3 flex space-x-4">
+               <a className="text-sm text-gray-500 transition hover:text-gray-600" target="_blank" rel="noopener noreferrer" href="mailto:address@yoursite.com">
+                  <span className="sr-only">mail</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" className="hover:text-primary-500 dark:hover:text-primary-400 fill-current text-gray-700 dark:text-gray-200 h-6 w-6">
+                     <title>Mail</title>
+                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                  </svg>
+               </a>
+               <a className="text-sm text-gray-500 transition hover:text-gray-600" target="_blank" rel="noopener noreferrer" href="https://github.com">
+                  <span className="sr-only">github</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="hover:text-primary-500 dark:hover:text-primary-400 fill-current text-gray-700 dark:text-gray-200 h-6 w-6">
+                     <title>GitHub</title>
+                     <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path>
+                  </svg>
+               </a>
+               <a className="text-sm text-gray-500 transition hover:text-gray-600" target="_blank" rel="noopener noreferrer" href="https://facebook.com">
+                  <span className="sr-only">facebook</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="hover:text-primary-500 dark:hover:text-primary-400 fill-current text-gray-700 dark:text-gray-200 h-6 w-6">
+                     <title>Facebook</title>
+                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                  </svg>
+               </a>
+               <a className="text-sm text-gray-500 transition hover:text-gray-600" target="_blank" rel="noopener noreferrer" href="https://youtube.com">
+                  <span className="sr-only">youtube</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="hover:text-primary-500 dark:hover:text-primary-400 fill-current text-gray-700 dark:text-gray-200 h-6 w-6">
+                     <title>Youtube</title>
+                     <path d="M23.499 6.203a3.008 3.008 0 00-2.089-2.089c-1.87-.501-9.4-.501-9.4-.501s-7.509-.01-9.399.501a3.008 3.008 0 00-2.088 2.09A31.258 31.26 0 000 12.01a31.258 31.26 0 00.523 5.785 3.008 3.008 0 002.088 2.089c1.869.502 9.4.502 9.4.502s7.508 0 9.399-.502a3.008 3.008 0 002.089-2.09 31.258 31.26 0 00.5-5.784 31.258 31.26 0 00-.5-5.808zm-13.891 9.4V8.407l6.266 3.604z"></path>
+                  </svg>
+               </a>
+               <a className="text-sm text-gray-500 transition hover:text-gray-600" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com">
+                  <span className="sr-only">linkedin</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="hover:text-primary-500 dark:hover:text-primary-400 fill-current text-gray-700 dark:text-gray-200 h-6 w-6">
+                     <title>Linkedin</title>
+                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                  </svg>
+               </a>
+               <a className="text-sm text-gray-500 transition hover:text-gray-600" target="_blank" rel="noopener noreferrer" href="https://bsky.app/">
+                  <span className="sr-only">bluesky</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="hover:text-primary-500 dark:hover:text-primary-400 fill-current text-gray-700 dark:text-gray-200 h-6 w-6">
+                     <title>Bluesky</title>
+                     <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565C.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479c.815 2.736 3.713 3.66 6.383 3.364q.204-.03.415-.056q-.207.033-.415.056c-3.912.58-7.387 2.005-2.83 7.078c5.013 5.19 6.87-1.113 7.823-4.308c.953 3.195 2.05 9.271 7.733 4.308c4.267-4.308 1.172-6.498-2.74-7.078a9 9 0 0 1-.415-.056q.21.026.415.056c2.67.297 5.568-.628 6.383-3.364c.246-.828.624-5.79.624-6.478c0-.69-.139-1.861-.902-2.206c-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8"></path>
+                  </svg>
+               </a>
+               <a className="text-sm text-gray-500 transition hover:text-gray-600" target="_blank" rel="noopener noreferrer" href="https://twitter.com/x">
+                  <span className="sr-only">x</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="hover:text-primary-500 dark:hover:text-primary-400 fill-current text-gray-700 dark:text-gray-200 h-6 w-6">
+                     <title>X</title>
+                     <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path>
+                  </svg>
+               </a>
+               <a className="text-sm text-gray-500 transition hover:text-gray-600" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com">
+                  <span className="sr-only">instagram</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="hover:text-primary-500 dark:hover:text-primary-400 fill-current text-gray-700 dark:text-gray-200 h-6 w-6">
+                     <title>Instagram</title>
+                     <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"></path>
+                  </svg>
+               </a>
+               <a className="text-sm text-gray-500 transition hover:text-gray-600" target="_blank" rel="noopener noreferrer" href="https://www.threads.net">
+                  <span className="sr-only">threads</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="hover:text-primary-500 dark:hover:text-primary-400 fill-current text-gray-700 dark:text-gray-200 h-6 w-6">
+                     <title>Threads</title>
+                     <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"></path>
+                  </svg>
+               </a>
+               <a className="text-sm text-gray-500 transition hover:text-gray-600" target="_blank" rel="noopener noreferrer" href="https://medium.com">
+                  <span className="sr-only">medium</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="hover:text-primary-500 dark:hover:text-primary-400 fill-current text-gray-700 dark:text-gray-200 h-6 w-6">
+                     <title>Medium</title>
+                     <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"></path>
+                  </svg>
+               </a>
+            </div>
+            <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
+               <div>Tails Azimuth</div>
+               <div> • </div>
+               <div>© 2025</div>
+               <div> • </div>
+               <a className="break-words" href="/">Next.js Starter Blog</a>
+            </div>
+            <div className="mb-8 text-sm text-gray-500 dark:text-gray-400"><a className="break-words" target="_blank" rel="noopener noreferrer" href="https://github.com/timlrx/tailwind-nextjs-starter-blog">Tailwind Nextjs Theme</a></div>
+         </div>
       </footer>
-    </div>
-  );
+   </section>
+</body>
+  )
+
+  // console.log(posts)
+  // return (
+  //   <div>
+  //     Hello
+  //     {posts.map(post => (
+  //       <div key={post.slug}>
+  //         <h2>{post.title}</h2>
+  //         <p>{post.excerpt}</p>
+  //       </div>
+  //     ))}
+  //   </div>
+  // );
+}
+
+export async function generateStaticParams() {
+  console.log('posts', posts)
+
+  return posts
 }
