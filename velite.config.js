@@ -10,7 +10,7 @@ export default defineConfig({
     posts: {
       name: "Post", // collection type name
       pattern: "posts/**/*.mdx", // content files glob pattern
-      
+
       schema: s
         .object({
           title: s.string().max(99), // Zod primitive type
@@ -22,7 +22,11 @@ export default defineConfig({
           content: s.markdown(), // transform markdown to html
         })
         // more additional fields (computed fields)
-        .transform((data) => ({ ...data, permalink: `/post/${data.slug}`, slug: data.slug.replace("posts/", "")})),
+        .transform((data) => ({
+          ...data,
+          permalink: `/post/${data.slug}`,
+          slug: data.slug.replace("posts/", ""),
+        })),
     },
   },
 });

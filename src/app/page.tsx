@@ -11,7 +11,6 @@ const formatDate = (dateString: string) => {
 export default async function Home() {
   // console.log('here')
 
-
   return (
     <main className="mb-auto">
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -21,47 +20,46 @@ export default async function Home() {
           </h1>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-
-         {posts.map(post => (
-                   <li key={`posts/${post.slug}`} className="py-12">
-            <article>
-              <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                <dl>
-                  <dt className="sr-only">Published on</dt>
-                  <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
-                    <time>{formatDate(post.date)} </time>
-                  </dd>
-                </dl>
-                <div className="space-y-5 xl:col-span-3">
-                  <div className="space-y-6">
-                    <div>
-                      <h2 className="text-2xl leading-8 font-bold tracking-tight">
-                        <a
-                          className="text-gray-900 dark:text-gray-100"
-                          href={`posts/${post.slug}`}
-                        >
-                          {post.title }
-                        </a>
-                      </h2>
-                     
+          {posts.map((post) => (
+            <li key={`posts/${post.slug}`} className="py-12">
+              <article>
+                <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+                  <dl>
+                    <dt className="sr-only">Published on</dt>
+                    <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
+                      <time>{formatDate(post.date)} </time>
+                    </dd>
+                  </dl>
+                  <div className="space-y-5 xl:col-span-3">
+                    <div className="space-y-6">
+                      <div>
+                        <h2 className="text-2xl leading-8 font-bold tracking-tight">
+                          <a
+                            className="text-gray-900 dark:text-gray-100"
+                            href={`posts/${post.slug}`}
+                          >
+                            {post.title}
+                          </a>
+                        </h2>
+                      </div>
+                      <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                        {post.excerpt}
+                      </div>
                     </div>
-                    <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                      {post.excerpt}
+                    <div className="text-base leading-6 font-medium">
+                      <a
+                        className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                        aria-label="Read more: "
+                        href={`posts/${post.slug}`}
+                      >
+                        Read more →
+                      </a>
                     </div>
-                  </div>
-                  <div className="text-base leading-6 font-medium">
-                    <a
-                      className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                      aria-label="Read more: "
-                      href={`posts/${post.slug}`}                    >
-                      Read more →
-                    </a>
                   </div>
                 </div>
-              </div>
-            </article>
-          </li>
-         ))}
+              </article>
+            </li>
+          ))}
         </ul>
       </div>
       <div className="flex justify-end text-base leading-6 font-medium">
@@ -73,7 +71,6 @@ export default async function Home() {
           All Posts →
         </a>
       </div>
-
     </main>
   );
 
