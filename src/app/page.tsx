@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { posts, Post, Collections } from "../../.velite";
+import { allPosts } from "content-collections";
 
 const formatDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString("en-US", {
@@ -20,14 +20,14 @@ export default async function Home() {
           </h1>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-          {posts.map((post) => (
+          {allPosts.map((post) => (
             <li key={`posts/${post.slug}`} className="py-12">
               <article>
                 <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                   <dl>
                     <dt className="sr-only">Published on</dt>
                     <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
-                      <time>{formatDate(post.date)} </time>
+                      <time>date {`posts/${post.slug}`} </time>
                     </dd>
                   </dl>
                   <div className="space-y-5 xl:col-span-3">
@@ -36,21 +36,21 @@ export default async function Home() {
                         <h2 className="text-2xl leading-8 font-bold tracking-tight">
                           <a
                             className="text-gray-900 dark:text-gray-100"
-                            href={`posts/${post.slug}`}
+                            href={`posts/${post.title}`}
                           >
                             {post.title}
                           </a>
                         </h2>
                       </div>
                       <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                        {post.excerpt}
+                        {post.summary}
                       </div>
                     </div>
                     <div className="text-base leading-6 font-medium">
                       <a
                         className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                         aria-label="Read more: "
-                        href={`posts/${post.slug}`}
+                        href={`posts/${post.title}`}
                       >
                         Read more →
                       </a>

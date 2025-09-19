@@ -9,20 +9,24 @@
     "lint": "biome check",
     "format": "biome format --write",
     "test": "vitest",
-    "content": "velite --verbose",
+    "//content": "velite --debug",
     "deploy": "next build && touch out/.nojekyll && git add out/ && git commit -m \"Deploy\" && git subtree push --prefix out origin gh-pages"
   },
   "dependencies": {
+    "@content-collections/core": "^0.11.1",
+    "@content-collections/next": "^0.2.7",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.16",
     "classnames": "^2.5.1",
+
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "next": "15.5.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "remark": "^15.0.1",
-    "remark-html": "^16.0.1"
+    "remark-html": "^16.0.1",
+    "zod": "^4.1.9"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
@@ -36,7 +40,6 @@
     "jsdom": "^26.1.0",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "velite": "^0.3.0",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
   }
