@@ -1,5 +1,6 @@
-import { defineCollection, defineConfig } from "@content-collections/core";
+import { createDefaultImport, defineCollection, defineConfig } from "@content-collections/core";
 import { z } from "zod";
+import { MDXContent } from "mdx/types";
 
 function slugify(str: string) {
     return str.split("/").map(s => {
@@ -20,11 +21,16 @@ const posts = defineCollection({
   schema: z.object({
     title: z.string(),
     summary: z.string(),
+    datePosted: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   }),
-  transform: (doc) => {
+  transform: ({ _meta, ...post }) => {
+    const mdxContent = createDefaultImport<MDXContent>(`@/content/posts/${_meta.filePath}`);
+    
     return {
-        ...doc,
-        slug: slugify(`${doc._meta.directory}/${doc._meta.fileName.substring(0, doc._meta.fileName.lastIndexOf("."))}`),
+        ...post,
+        slug: slugify(`${_meta.directory}/${_meta.fileName.substring(0, _meta.fileName.lastIndexOf("."))}`),
+        datePosted: new Date(post.datePosted),
+        mdxContent,
     };
   }
 });

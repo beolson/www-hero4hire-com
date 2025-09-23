@@ -1,15 +1,10 @@
-import { posts, Post, Collections } from "../../../../.velite";
+import { allPosts } from "content-collections";
 
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
-  //  return [{ slug: ['a', '1'] }, { slug: ['b', '2'] }, { slug: ['c', '3'] }, { slug: ['2025', 'test copy 2'] }]
-  //   debugger
-  console.log(posts);
-  const sluggroups = posts.map((post) => {
+  const sluggroups = allPosts.map((post) => {
     return { slug: post.slug.split("/") };
   });
-
-  console.log(sluggroups);
   return sluggroups;
 }
 
@@ -22,7 +17,9 @@ export default async function Page({
 }) {
   const { slug } = await params;
 
-  var post = posts.find((p) => p.slug === slug.join("/"));
+
+  var post = allPosts.find((p) => p.slug === slug.join("/"));
+  const MdxContent = post?.mdxContent;
   console.log("page", slug);
   // ...
   return (
@@ -116,9 +113,7 @@ export default async function Page({
                   
                 >
                   
-                  <span dangerouslySetInnerHTML={{
-                    __html: post?.content ? post.content : "none",
-                  }}></span >
+                  <MdxContent />
                 </div>
                 <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
                   <a
