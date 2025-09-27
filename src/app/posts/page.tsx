@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import { allPosts } from "content-collections";
 
@@ -8,7 +9,7 @@ const formatDate = (dateString: string) => {
     day: "numeric",
   });
 };
-export default async function Home() {
+export default function Home() {
   // console.log('here')
 
   return (

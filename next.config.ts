@@ -1,12 +1,18 @@
-import type { NextConfig } from "next";
 import { withContentCollections } from "@content-collections/next";
-const isProd = process.env.NODE_ENV === "production";
+import createMDX from "@next/mdx";
 
-const nextConfig: NextConfig = {
-  output: "export",
-  basePath: "",
-  assetPrefix: isProd ? "" : "",
-  images: { unoptimized: true },
+const nextConfig = {
+ pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 };
 
-export default withContentCollections(nextConfig);
+const withMDX = createMDX({
+ options: {
+   remarkPlugins: [
+     ["remark-frontmatter"],
+     ["remark-mdx-frontmatter"],
+   ],
+   rehypePlugins: [],
+ },
+});
+
+export default withContentCollections(withMDX(nextConfig));

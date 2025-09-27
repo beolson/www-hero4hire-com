@@ -1,3 +1,4 @@
+
 import { allPosts } from "content-collections";
 
 // Return a list of `params` to populate the [slug] dynamic segment
@@ -19,8 +20,8 @@ export default async function Page({
 
 
   var post = allPosts.find((p) => p.slug === slug.join("/"));
-  const MdxContent = post?.mdxContent;
-  console.log("page", slug);
+  const MdxContent = post?.mdxContent ? post?.mdxContent : () => <></>;
+
   // ...
   return (
     <main className="mb-auto">

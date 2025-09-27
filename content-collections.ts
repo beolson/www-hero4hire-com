@@ -24,7 +24,7 @@ const posts = defineCollection({
     datePosted: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   }),
   transform: ({ _meta, ...post }) => {
-    const mdxContent = createDefaultImport<MDXContent>(`@/content/posts/${_meta.filePath}`);
+    const mdxContent = createDefaultImport<MDXContent>(`@content/posts/${_meta.filePath}`);
     
     return {
         ...post,
