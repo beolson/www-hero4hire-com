@@ -24,7 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white`}
+      >
         <section className="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
           <header className="flex items-center w-full bg-white dark:bg-gray-950 justify-between py-10">
             <a className="break-words" aria-label="TailwindBlog" href="/">

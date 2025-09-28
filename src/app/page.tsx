@@ -1,17 +1,6 @@
-"use client"
-import Image from "next/image";
+"use client";
 import { allPosts } from "content-collections";
-
-const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-};
 export default function Home() {
-  // console.log('here')
-
   return (
     <main className="mb-auto">
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -28,7 +17,13 @@ export default function Home() {
                   <dl>
                     <dt className="sr-only">Published on</dt>
                     <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
-                      <time>{post.datePosted.toLocaleDateString('en-EN', {year: "numeric", month: "long", day: "2-digit"})} </time>
+                      <time>
+                        {post.datePosted.toLocaleDateString("en-EN", {
+                          year: "numeric",
+                          month: "long",
+                          day: "2-digit",
+                        })}{" "}
+                      </time>
                     </dd>
                   </dl>
                   <div className="space-y-5 xl:col-span-3">
@@ -74,23 +69,4 @@ export default function Home() {
       </div>
     </main>
   );
-
-  // console.log(posts)
-  // return (
-  //   <div>
-  //     Hello
-  //     {posts.map(post => (
-  //       <div key={post.slug}>
-  //         <h2>{post.title}</h2>
-  //         <p>{post.excerpt}</p>
-  //       </div>
-  //     ))}
-  //   </div>
-  // );
 }
-
-// export async function generateStaticParams() {
-//   console.log("posts", posts);
-
-//   return posts;
-// }

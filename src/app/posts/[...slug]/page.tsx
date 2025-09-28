@@ -1,5 +1,5 @@
-
 import { allPosts } from "content-collections";
+import Image from "next/image";
 
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
@@ -18,7 +18,6 @@ export default async function Page({
 }) {
   const { slug } = await params;
 
-
   var post = allPosts.find((p) => p.slug === slug.join("/"));
   const MdxContent = post?.mdxContent ? post?.mdxContent : () => <></>;
 
@@ -28,10 +27,12 @@ export default async function Page({
       <section className="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
         <div className="fixed right-8 bottom-8 hidden flex-col gap-3 md:hidden">
           <button
+            type="button"
             aria-label="Scroll To Comment"
             className="rounded-full bg-gray-200 p-2 text-gray-500 transition-all hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600"
           >
             <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <title>Scroll to comment</title>
               <path
                 fillRule="evenodd"
                 d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
@@ -40,10 +41,12 @@ export default async function Page({
             </svg>
           </button>
           <button
+            type="button"
             aria-label="Scroll To Top"
             className="rounded-full bg-gray-200 p-2 text-gray-500 transition-all hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600"
           >
             <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <title>Scroll to top</title>
               <path
                 fillRule="evenodd"
                 d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"
@@ -77,15 +80,12 @@ export default async function Page({
                 <dd>
                   <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 xl:block xl:space-y-8 xl:space-x-0">
                     <li className="flex items-center space-x-2">
-                      <img
+                      <Image
                         alt="avatar"
-                        loading="lazy"
-                        width="38"
-                        height="38"
-                        decoding="async"
-                        data-nimg="1"
+                        width={38}
+                        height={38}
                         className="h-10 w-10 rounded-full"
-                        src="/_next/image?url=%2Fstatic%2Fimages%2Favatar.png&amp;w=96&amp;q=75"
+                        src="/static/images/avatar.png"
                       />
                       <dl className="text-sm leading-5 font-medium whitespace-nowrap">
                         <dt className="sr-only">Name</dt>
@@ -109,18 +109,14 @@ export default async function Page({
                 </dd>
               </dl>
               <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
-                <div
-                  className="prose dark:prose-invert max-w-none pt-10 pb-8"
-                  
-                >
-                  
+                <div className="prose dark:prose-invert max-w-none pt-10 pb-8">
                   <MdxContent />
                 </div>
                 <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
                   <a
                     className="break-words"
                     target="_blank"
-                    rel="nofollow"
+                    rel="noopener nofollow"
                     href="https://mobile.twitter.com/search?q=https%3A%2F%2Ftailwind-nextjs-starter-blog.vercel.app%2Fblog%2Frelease-of-tailwind-nextjs-starter-blog-v2.0"
                   >
                     Discuss on Twitter
@@ -140,7 +136,7 @@ export default async function Page({
                   className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300"
                   id="comment"
                 >
-                  <button>Load Comments</button>
+                  <button type="button">Load Comments</button>
                 </div>
               </div>
               <footer>

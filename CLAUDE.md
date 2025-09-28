@@ -4,67 +4,65 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Next.js 15 project configured for static export and GitHub Pages deployment. The site appears to be for Hero4Hire (www-hero4hire-com) and uses a modern stack with:
-- Next.js 15 with App Router and Turbopack
-- TypeScript with strict configuration
-- TailwindCSS v4 for styling
-- Biome for linting and formatting (replaces ESLint/Prettier)
-- Vitest + React Testing Library for testing
-- Velite for content management
-- pnpm as package manager
+Hero4Hire is a modern blog/content website built with Next.js 15, React 19, and TypeScript. It uses Content Collections for content management and deploys as a static site to GitHub Pages.
 
-## Key Commands
+## Development Commands
 
-### Development
-- `pnpm dev` - Start development server with Turbopack
+### Essential Commands
+- `pnpm dev` - Start development server
 - `pnpm build` - Build for production with Turbopack
-- `pnpm start` - Start production server (serves static export)
-
-### Code Quality
-- `pnpm lint` - Run Biome linting (equivalent to `biome check`)
+- `pnpm lint` - Run Biome linting
 - `pnpm format` - Format code with Biome
+- `pnpm test` - Run Vitest tests
 
-### Testing
-- `pnpm test` - Run Vitest test suite
-- `pnpm test --watch` - Run tests in watch mode
-- `pnpm test --coverage` - Run tests with coverage report
-
-### Deployment
-- `pnpm deploy` - Build and deploy to GitHub Pages via git subtree to `gh-pages` branch
-- GitHub Actions automatically deploys on push to main branch
+### Package Manager
+Uses **pnpm** - ensure you use `pnpm` commands, not npm or yarn.
 
 ## Architecture
 
-### Static Export Configuration
-The project is configured for static generation (`output: "export"`) with:
-- Build output goes to `./out` directory
-- Images are unoptimized for static hosting compatibility
-- GitHub Pages deployment via both manual git subtree and GitHub Actions
+### Tech Stack
+- **Next.js 15** with App Router
+- **React 19** and TypeScript 5
+- **Tailwind CSS v4** for styling
+- **Content Collections** for content management
+- **MDX** for rich markdown content
+- **Biome** for linting/formatting (no ESLint/Prettier)
+- **Vitest** for testing
+
+### Key Directories
+- `src/app/` - Next.js App Router pages and layouts
+- `content/posts/` - Blog posts as MDX files with year-based organization
+- `content/authors/` - Author information
+- `public/` - Static assets
 
 ### Content Management
-- Markdown content in `_posts/` directory with frontmatter
-- Velite dependency suggests content processing capabilities
-- Gray-matter and remark for markdown processing
+- Posts are MDX files in `/content/posts/` with frontmatter: `title`, `summary`, `datePosted`
+- Content schema defined in `content-collections.ts`
+- Automatic slug generation and date parsing
 
-### Styling System
-- TailwindCSS v4 with PostCSS integration
-- Geist font family (sans and mono) via next/font/google
-- Path aliases: `@/*` maps to `./src/*`
+## Configuration Files
 
-### Testing Framework
-- Vitest for unit testing with React Testing Library
-- jsdom environment for DOM testing
-- vite-tsconfig-paths for TypeScript path resolution in tests
+### Critical Files
+- `biome.json` - Linting and formatting rules (replaces ESLint/Prettier config)
+- `content-collections.ts` - Content schema and transformation logic
+- `next.config.ts` - Next.js config with Content Collections integration
+- `tsconfig.json` - TypeScript config with path aliases
 
-### Development Tools
-- Biome handles both linting and formatting with Next.js and React rules
-- TypeScript strict mode enabled
-- VSCode workspace configured with local TypeScript SDK
+### Styling
+- Uses Tailwind CSS v4 with custom theme in `src/app/globals.css`
+- OKLCH color space with dark mode support
+- Typography plugin for prose content
 
-## Key Configuration Files
+## Deployment
 
-- `next.config.ts` - Static export configuration for GitHub Pages
-- `biome.json` - Linting and formatting rules
-- `tsconfig.json` - TypeScript configuration with path aliases
-- `.github/workflows/deploy.yml` - GitHub Actions deployment workflow
-- `package.json` - pnpm scripts and dependencies
+- Automated deployment via GitHub Actions (`.github/workflows/deploy.yml`)
+- Builds and deploys to GitHub Pages on push to `main`
+- Static site generation with Next.js export
+
+## Development Notes
+
+- Use Biome for all linting/formatting - no separate ESLint or Prettier
+- Content Collections handles content processing and type generation
+- App Router architecture - pages go in `src/app/`
+- Images and assets go in `public/`
+- Always run `pnpm lint` and `pnpm build` before committing
