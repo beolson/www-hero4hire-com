@@ -24,6 +24,7 @@ export default function Home() {
                           day: "2-digit",
                         })}{" "}
                       </time>
+                      <div>{JSON.stringify(post.authors)}</div>
                     </dd>
                   </dl>
                   <div className="space-y-5 xl:col-span-3">

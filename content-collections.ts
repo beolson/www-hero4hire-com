@@ -21,6 +21,20 @@ function slugify(str: string) {
     .join("/");
 }
 
+const authors = defineCollection({
+  name: "authors", 
+  directory: "content/authors",
+  include: "**/*.mdx",
+  schema: z.object({
+    name: z.string(),
+    shortName: z.string(),
+    github: z.string(),
+    youtube: z.string()
+  }),
+})
+
+
+
 const posts = defineCollection({
   name: "posts",
   directory: "content/posts",
@@ -29,23 +43,32 @@ const posts = defineCollection({
     title: z.string(),
     summary: z.string(),
     datePosted: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    authors: z.string().array()
   }),
-  transform: ({ _meta, ...post }) => {
+  transform: async (document, context) => {
     const mdxContent = createDefaultImport<MDXContent>(
-      `@content/posts/${_meta.filePath}`,
+      `@content/posts/${document._meta.filePath}`,
     );
 
+    console.log('me')
+    const foundAuthors = await context.documents(authors).filter(a => document.authors.some(da => da === a.shortName))
+
+    console.log(foundAuthors)
+
     return {
-      ...post,
+      ...document,
       slug: slugify(
-        `${_meta.directory}/${_meta.fileName.substring(0, _meta.fileName.lastIndexOf("."))}`,
+        `${document._meta.directory}/${document._meta.fileName.substring(0, document._meta.fileName.lastIndexOf("."))}`,
       ),
-      datePosted: new Date(post.datePosted),
+      datePosted: new Date(document.datePosted),
       mdxContent,
+      authors: foundAuthors
     };
   },
 });
 
+
+
 export default defineConfig({
-  collections: [posts],
+  collections: [posts, authors],
 });
