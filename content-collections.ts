@@ -22,18 +22,16 @@ function slugify(str: string) {
 }
 
 const authors = defineCollection({
-  name: "authors", 
+  name: "authors",
   directory: "content/authors",
   include: "**/*.mdx",
   schema: z.object({
     name: z.string(),
     shortName: z.string(),
     github: z.string(),
-    youtube: z.string()
+    youtube: z.string(),
   }),
-})
-
-
+});
 
 const posts = defineCollection({
   name: "posts",
@@ -43,17 +41,19 @@ const posts = defineCollection({
     title: z.string(),
     summary: z.string(),
     datePosted: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-    authors: z.string().array()
+    authors: z.string().array(),
   }),
   transform: async (document, context) => {
     const mdxContent = createDefaultImport<MDXContent>(
       `@content/posts/${document._meta.filePath}`,
     );
 
-    console.log('me')
-    const foundAuthors = await context.documents(authors).filter(a => document.authors.some(da => da === a.shortName))
+    console.log("me");
+    const foundAuthors = await context
+      .documents(authors)
+      .filter((a) => document.authors.some((da) => da === a.shortName));
 
-    console.log(foundAuthors)
+    console.log(foundAuthors);
 
     return {
       ...document,
@@ -62,12 +62,10 @@ const posts = defineCollection({
       ),
       datePosted: new Date(document.datePosted),
       mdxContent,
-      authors: foundAuthors
+      authors: foundAuthors,
     };
   },
 });
-
-
 
 export default defineConfig({
   collections: [posts, authors],

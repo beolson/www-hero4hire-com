@@ -10,7 +10,7 @@ export default function Home() {
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {allPosts.map((post) => (
-            <li key={`blog/${post.slug}`} className="py-12">
+            <li key={`posts/${post.slug}`} className="py-12">
               <article>
                 <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                   <dl>
@@ -31,7 +31,7 @@ export default function Home() {
                         <h2 className="text-2xl leading-8 font-bold tracking-tight">
                           <a
                             className="text-gray-900 dark:text-gray-100"
-                            href={`blog/${post.slug}`}
+                            href={`posts/${post.slug}`}
                           >
                             {post.title}
                           </a>
@@ -45,7 +45,7 @@ export default function Home() {
                       <a
                         className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                         aria-label="Read more: "
-                        href={`blog/${post.slug}`}
+                        href={`posts/${post.slug}`}
                       >
                         Read more →
                       </a>
@@ -63,7 +63,7 @@ export default function Home() {
           aria-label="All posts"
           href="/blog"
         >
-          All Posts →
+          Next Page →
         </a>
       </div>
     </main>
