@@ -1,5 +1,30 @@
 import { allPosts } from "content-collections";
-export default function Home() {
+
+const PAGE_SIZE = 5;
+
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
+  const params = await searchParams;
+  // Parse and validate page number (default to 1)
+  const currentPage = Math.max(1, Number(params.page) || 1);
+
+  // Sort posts by date (newest first)
+  const sortedPosts = [...allPosts].sort(
+    (a, b) => b.datePosted.getTime() - a.datePosted.getTime(),
+  );
+
+  // Calculate pagination values
+  const totalPages = Math.ceil(sortedPosts.length / PAGE_SIZE);
+  const validCurrentPage = Math.min(currentPage, totalPages || 1);
+  const startIndex = (validCurrentPage - 1) * PAGE_SIZE;
+  const endIndex = validCurrentPage * PAGE_SIZE;
+
+  // Slice posts for current page
+  const paginatedPosts = sortedPosts.slice(startIndex, endIndex);
+
   return (
     <main className="mb-auto">
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -9,7 +34,7 @@ export default function Home() {
           </h1>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-          {allPosts.map((post) => (
+          {paginatedPosts.map((post) => (
             <li key={`posts/${post.slug}`} className="py-12">
               <article>
                 <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
@@ -57,15 +82,36 @@ export default function Home() {
           ))}
         </ul>
       </div>
-      <div className="flex justify-end text-base leading-6 font-medium">
-        <a
-          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-          aria-label="All posts"
-          href="/blog"
+      {totalPages > 1 && (
+        <div
+          className={`flex text-base leading-6 font-medium ${
+            validCurrentPage === 1
+              ? "justify-end"
+              : validCurrentPage === totalPages
+                ? "justify-start"
+                : "justify-between"
+          }`}
         >
-          Next Page →
-        </a>
-      </div>
+          {validCurrentPage > 1 && (
+            <a
+              className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+              aria-label="Previous page"
+              href={`/posts?page=${validCurrentPage - 1}`}
+            >
+              ← Previous Page
+            </a>
+          )}
+          {validCurrentPage < totalPages && (
+            <a
+              className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+              aria-label="Next page"
+              href={`/posts?page=${validCurrentPage + 1}`}
+            >
+              Next Page →
+            </a>
+          )}
+        </div>
+      )}
     </main>
   );
 }

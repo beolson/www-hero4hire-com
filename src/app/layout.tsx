@@ -41,13 +41,13 @@ export default function RootLayout({
               <div className="no-scrollbar hidden max-w-40 items-center gap-x-4 overflow-x-auto sm:flex md:max-w-72 lg:max-w-96">
                 <a
                   className="hover:text-primary-500 dark:hover:text-primary-400 m-1 font-medium text-gray-900 dark:text-gray-100"
-                  href="/blog"
+                  href="/posts"
                 >
-                  Blog
+                  Posts
                 </a>
                 <a
                   className="hover:text-primary-500 dark:hover:text-primary-400 m-1 font-medium text-gray-900 dark:text-gray-100"
-                  href="/tags"
+                  href="/notes"
                 >
                   Tech Notes
                 </a>
