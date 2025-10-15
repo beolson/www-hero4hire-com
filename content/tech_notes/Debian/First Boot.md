@@ -1,9 +1,3 @@
----
-title: Images in Next.js
-tags: ['next js', 'guide']
-draft: false
-authors: ['sparrowhawk']
----
 
 This document assumes you are configuring the debian system from a remote machine (Client)
 - Be Sure to install SSH Server During install.
@@ -15,7 +9,6 @@ This document assumes you are configuring the debian system from a remote machin
 	- `ssh <USER_NAME>@<REMOTE_SYSTEM_NAME>`
 - switch to root
 	- `su -`
-	
 - Install Sudo
 	- `apt install sudo`
 - set user as sudoer
@@ -29,6 +22,7 @@ Remove cdrom from sources.list
 Configure SSH by running ssh-server-config.sh
 - `sudo ./SystemScripts/debian_12/ssh-server-config.sh`
 - !! If the Client you are running from has not pushed its keys to Github, you will not be able to login via SSH after this !!
+
 
 
 

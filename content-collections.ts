@@ -42,18 +42,19 @@ const posts = defineCollection({
     summary: z.string(),
     datePosted: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
     authors: z.string().array(),
+    tags: z.string().array().optional()
   }),
   transform: async (document, context) => {
     const mdxContent = createDefaultImport<MDXContent>(
       `@content/posts/${document._meta.filePath}`,
     );
 
-    console.log("me");
+
     const foundAuthors = await context
       .documents(authors)
       .filter((a) => document.authors.some((da) => da === a.shortName));
 
-    console.log(foundAuthors);
+
 
     return {
       ...document,

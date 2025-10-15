@@ -90,19 +90,9 @@ export default async function Page({
                       <dl className="text-sm leading-5 font-medium whitespace-nowrap">
                         <dt className="sr-only">Name</dt>
                         <dd className="text-gray-900 dark:text-gray-100">
-                          Tails Azimuth
+                          {post?.authors[0].name}
                         </dd>
-                        <dt className="sr-only">Twitter</dt>
-                        <dd>
-                          <a
-                            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href="https://twitter.com/Twitter"
-                          >
-                            @Twitter
-                          </a>
-                        </dd>
+
                       </dl>
                     </li>
                   </ul>
@@ -146,57 +136,21 @@ export default async function Page({
                       Tags
                     </h2>
                     <div className="flex flex-wrap">
-                      <a
-                        className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase"
-                        href="/tags/next-js"
-                      >
-                        next-js
-                      </a>
-                      <a
-                        className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase"
-                        href="/tags/tailwind"
-                      >
-                        tailwind
-                      </a>
-                      <a
-                        className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase"
-                        href="/tags/guide"
-                      >
-                        guide
-                      </a>
-                      <a
-                        className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase"
-                        href="/tags/feature"
-                      >
-                        feature
-                      </a>
-                    </div>
-                  </div>
-                  <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
-                    <div>
-                      <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                        Previous Article
-                      </h2>
-                      <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                      {post?.tags?.map(p => (
                         <a
-                          className="break-words"
-                          href="/blog/new-features-in-v1"
-                        >
-                          New features in v1
-                        </a>
-                      </div>
+                        className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase"
+                        href={`\\tags\\${p}`}
+                      >
+                        {p}
+                      </a>
+                      ))}
+                      
+                     
                     </div>
                   </div>
+                  
                 </div>
-                <div className="pt-4 xl:pt-8">
-                  <a
-                    className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                    aria-label="Back to the blog"
-                    href="/blog"
-                  >
-                    ← Back to the blog
-                  </a>
-                </div>
+
               </footer>
             </div>
           </div>

@@ -1,0 +1,44 @@
+
+
+- Change Computer Name
+- Install Windows Terminal 
+    - `winget install -e --id Microsoft.WindowsTerminal`
+- Update PowerShell
+ - `winget install -e --id Microsoft.PowerShell`
+- Install VS Code 
+    - `winget install -e --id Microsoft.VisualStudioCode`
+- Install Visual Studio 
+    - Enterprise = `winget install -e --id Microsoft.VisualStudio.2022.Enterprise`
+    - Community = `winget install -e --id Microsoft.VisualStudio.2022.Community`
+    - Professional = `winget install -e --id Microsoft.VisualStudio.2022.Professional`
+- Install Chrome
+    - `winget install -e --id Google.Chrome`
+- Install Docker Dekstop
+    - `winget install -e --id Docker.DockerDesktop`
+
+- Install Sql Server Management Studio 
+    - `winget install -e --id Microsoft.SQLServerManagementStudio`
+- Install Github CLI 
+    - `winget install -e --id GitHub.cli`
+- Install Git 
+    - `winget install -e --id Git.Git`
+- Install Power Toys 
+    - [Download](https://github.com/microsoft/powertoys/releases/)
+- Install Last Pass for Chrome 
+    - [Open](https://chromewebstore.google.com/detail/lastpass-free-password-ma/hdokiejnpimakedhajhdlcegeplioahd?hl=en&pli=1)
+- Create a new SSH key
+    - `ssh-keygen -t rsa-sha2-512`
+- Push that SSK Key to Github
+    - `gh auth login -h github.com -p https -s admin:public_key`
+    - `gh ssh-key add $home\.ssh\id_rsa.pub`
+- Azure CLI
+    - `winget install -e --id Microsoft.AzureCLI`
+- Azure Dev CLI
+    - `winget install -e --id Microsoft.Azd`
+- PowerShell
+    - Enable unsigned scripts in Powershell 
+    - `Set-ExecutionPolicy RemoteSigned`
+- Install WSL
+    - `wsl --install`
+    - `wsl --set-version 2`
+    - Run SystemScripts/wsl/System-Up.ps1
